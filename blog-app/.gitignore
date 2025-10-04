@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+*.log
+.env
+
+# Build outputs
+build/
+dist/
+.next/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Personal files (exclude these)
+*.pptx
+*.pdf
+*.docx
+*.lnk
+*.jpg
+*.zip
+*.html
+resume*
+MURALI*
+NPS_Assignment/
+lead-management-module.zip
+me_api_playground/
+motion sensing PPT.pptx
+murali*
+python_ppt*
+sheep1.html
