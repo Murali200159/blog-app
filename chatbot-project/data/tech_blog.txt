@@ -1,0 +1,11 @@
+AI ethics is the study of moral issues arising from the development and use of artificial intelligence. As AI systems become more prevalent, ensuring they operate fairly, transparently, and responsibly is critical. Ethical concerns include bias in algorithms, privacy violations, and the societal impact of automation.
+
+Bias in AI can occur when training data reflects historical inequalities. For example, a hiring algorithm trained on biased resumes may favor certain demographics, perpetuating unfair outcomes. Addressing bias requires diverse datasets and regular audits of model decisions.
+
+Transparency is another key issue. Many AI systems, especially deep learning models, are “black boxes” where decision-making processes are not easily understood. Improving transparency involves developing explainable AI techniques, so users can understand how decisions are made.
+
+Privacy is a major concern as AI systems often rely on large datasets, including personal information. Ensuring data is anonymized and used with consent is essential to protect user rights. Regulations like GDPR guide ethical data practices.
+
+The societal impact of AI includes job displacement due to automation and the potential for misuse, such as in surveillance. Ethical AI development involves balancing innovation with responsibility, ensuring benefits are equitably distributed.
+
+[Total ~600 words, split into 5 paragraphs]

@@ -1,0 +1,99 @@
+import os
+import glob
+import json
+from datetime import datetime
+import argparse
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import nltk
+from nltk.corpus import stopwords
+
+# Ensure NLTK stopwords are downloaded
+nltk.download('stopwords', quiet=True)
+STOPWORDS = set(stopwords.words('english'))
+
+def load_corpus(data_dir):
+    """Load all .txt files and split into paragraphs."""
+    if not os.path.exists(data_dir):
+        raise ValueError(f"Directory {data_dir} does not exist.")
+    
+    files = glob.glob(os.path.join(data_dir, "*.txt"))
+    if not files:
+        raise ValueError(f"No .txt files found in {data_dir}")
+    
+    paragraphs = []
+    doc_metadata = []
+    for file in files:
+        with open(file, 'r', encoding='utf-8') as f:
+            text = f.read()
+            paras = [p.strip() for p in text.split('\n\n') if len(p.strip()) >= 50]
+            paragraphs.extend(paras)
+            doc_metadata.extend([file]*len(paras))
+    return paragraphs, doc_metadata
+
+def build_index(paragraphs):
+    """Build TF-IDF vectorizer and matrix."""
+    vectorizer = TfidfVectorizer(stop_words=STOPWORDS, max_features=5000)
+    tfidf_matrix = vectorizer.fit_transform(paragraphs)
+    return vectorizer, tfidf_matrix
+
+def search(query, vectorizer, tfidf_matrix, doc_metadata, top_k=3):
+    """Return best paragraph and top_k results."""
+    query_vec = vectorizer.transform([query])
+    scores = cosine_similarity(query_vec, tfidf_matrix).flatten()
+    ranked_indices = scores.argsort()[::-1]
+
+    top3_results = []
+    for idx in ranked_indices[:top_k]:
+        top3_results.append({
+            'file': doc_metadata[idx],
+            'para': paragraphs[idx],
+            'score': float(scores[idx])
+        })
+
+    best_match = top3_results[0] if top3_results else None
+    return best_match, top3_results
+
+def log_interaction(query, best_match, top3_results, output_file='outputs/session.jsonl'):
+    """Log each query interaction to JSONL."""
+    log_entry = {
+        'query': query,
+        'top1': best_match if best_match else {'file': '', 'para': 'No match found', 'score': 0.0},
+        'top3': top3_results,
+        'timestamp': datetime.now().isoformat()
+    }
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    with open(output_file, 'a', encoding='utf-8') as f:
+        f.write(json.dumps(log_entry, ensure_ascii=False) + '\n')
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Mini Chatbot")
+    parser.add_argument('--data_dir', type=str, required=True, help="Directory containing .txt files")
+    args = parser.parse_args()
+
+    # Load corpus and build index
+    paragraphs, doc_metadata = load_corpus(args.data_dir)
+    print(f"Loaded {len(paragraphs)} paragraphs from {len(set(doc_metadata))} files.")
+    vectorizer, tfidf_matrix = build_index(paragraphs)
+
+    # Start interactive CLI
+    print("\nChatbot ready! Enter your query (or 'quit' to exit):")
+    while True:
+        query = input("> ").strip()
+        if query.lower() in ['quit', 'exit']:
+            print("Exiting chatbot. Goodbye!")
+            break
+        best, top3 = search(query, vectorizer, tfidf_matrix, doc_metadata)
+        if best:
+            print(f"\nBest paragraph (file: {best['file']}, score: {best['score']:.2f}):")
+            print(f"{best['para'][:500]}{'...' if len(best['para'])>500 else ''}\n")
+        else:
+            print("No relevant matches found.\n")
+
+        print("Top 3 matches:")
+        for i, res in enumerate(top3, 1):
+            print(f"{i}. File: {res['file']}, Score: {res['score']:.2f}")
+        print("\n---")
+
+        log_interaction(query, best, top3)

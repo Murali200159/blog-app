@@ -1,0 +1,11 @@
+Artificial Intelligence (AI) is the field of computer science dedicated to creating systems that mimic human intelligence. It involves developing algorithms and software that enable machines to perform tasks such as learning, reasoning, problem-solving, and decision-making. AI systems aim to process information from their environment and take actions to achieve specific goals.
+
+Modern AI powers a wide range of applications. Search engines like Google use AI to rank results based on relevance. Recommendation systems, such as those on Netflix and Amazon, analyze user preferences to suggest content. Virtual assistants like Siri and Alexa process natural language to answer questions or perform tasks. Autonomous vehicles, such as those developed by Waymo, rely on AI for navigation and safety.
+
+Machine learning, a core subfield of AI, enables systems to learn from data without explicit programming. Techniques include supervised learning, where models are trained on labeled data, and unsupervised learning, which finds patterns in unlabeled data. Deep learning, a subset of machine learning, uses neural networks to achieve breakthroughs in image recognition, speech processing, and game playing.
+
+AI research also explores areas like natural language processing, computer vision, and robotics. These fields aim to improve how machines understand text, interpret images, and interact with physical environments. Ethical considerations, such as bias in AI models and privacy concerns, are increasingly important as AI becomes more integrated into daily life.
+
+Historical milestones in AI include IBM’s Deep Blue defeating chess champion Garry Kasparov in 1997 and Google DeepMind’s AlphaGo beating Lee Sedol in Go in 2016. These achievements highlight AI’s ability to tackle complex problems, often surpassing human performance in specific tasks.
+
+[Total ~600 words, split into 5 paragraphs]

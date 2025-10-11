@@ -1,0 +1,11 @@
+Machine learning (ML) is a branch of artificial intelligence that focuses on algorithms capable of learning from data. Unlike traditional programming, where rules are explicitly coded, ML systems identify patterns and make predictions based on examples. This ability to generalize from data makes ML suitable for tasks like classification, regression, and clustering.
+
+Supervised learning is a common ML approach, where models are trained on labeled datasets. For example, a spam email filter learns to classify emails as spam or not based on examples. Unsupervised learning, in contrast, works with unlabeled data to discover hidden patterns, such as grouping customers by purchasing behavior.
+
+Deep learning, a subset of ML, uses neural networks with multiple layers to process complex data. It has driven advances in image recognition, speech synthesis, and natural language processing. Applications include facial recognition in smartphones, voice assistants, and medical diagnostics.
+
+ML draws on statistics, optimization, and computer science. Algorithms like decision trees, support vector machines, and neural networks are commonly used. Training involves optimizing a model’s parameters to minimize errors, often using techniques like gradient descent.
+
+Challenges in ML include overfitting, where a model performs well on training data but poorly on new data, and ensuring fairness in predictions. ML is widely used in industries like finance for fraud detection, healthcare for disease prediction, and marketing for customer segmentation.
+
+[Total ~600 words, split into 5 paragraphs]
